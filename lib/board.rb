@@ -20,8 +20,8 @@ class Board
   
   # adds a piece to the grid
   # indexes start at 0 from the top left corner of the grid
-  def add_piece(piece, x, y)
-    @grid[x][y] = piece
+  def add_piece(player_token, location)
+    @grid[location.first][location.last] = player_token
   end
   
   # determines if there is a winning player and returns that player token

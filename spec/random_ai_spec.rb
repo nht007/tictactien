@@ -6,8 +6,11 @@ describe "RandomAi" do
     random_ai = RandomAi.new
     board = Board.new
     
-    random_ai.should_receive(:rand).with(9).and_return(5)
-    random_ai.calculate_move(board).should == board.available_spaces[5]
+    available_spaces = mock("list of spaces")
+    board.stub!(:available_spaces).and_return(available_spaces)
+    available_spaces.should_receive(:sample).and_return("the move")
+    
+    random_ai.calculate_move(board).should == "the move"
   end
   
 end
