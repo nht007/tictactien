@@ -1,0 +1,9 @@
+1307379093
+Board	/home/tien/programming/ruby/tictactien/lib/board.rb	class Board
+Player	/home/tien/programming/ruby/tictactien/lib/player.rb	class Player
+add_piece	/home/tien/programming/ruby/tictactien/lib/board.rb	  def add_piece(piece, x, y)
+available_spaces	/home/tien/programming/ruby/tictactien/lib/board.rb	  def available_spaces
+calculate_win	/home/tien/programming/ruby/tictactien/lib/board.rb	  def calculate_win
+grid	/home/tien/programming/ruby/tictactien/lib/board.rb	  attr_accessor :grid
+initialize	/home/tien/programming/ruby/tictactien/lib/board.rb	  def initialize
+perform_move	/home/tien/programming/ruby/tictactien/lib/player.rb	  def perform_move(available_spaces)
