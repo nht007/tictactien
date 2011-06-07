@@ -1,4 +1,4 @@
-require '../lib/board'
+require 'spec_helper'
 
 describe "Board" do
   it "returns its new grid" do

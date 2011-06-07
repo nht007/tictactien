@@ -1,5 +1,4 @@
-require '../lib/random_ai'
-require '../lib/board'
+require 'spec_helper'
 
 describe "RandomAi" do
   it "calculates a random move" do
