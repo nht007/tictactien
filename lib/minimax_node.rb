@@ -1,38 +1,28 @@
-class Board
-  attr_accessor :grid
+class MinimaxNode
+  attr_accessor :grid, :last_move, :score
   
-  def initialize
-    @grid = [[nil, nil, nil],
-             [nil, nil, nil],
-             [nil, nil, nil]]
+  def initialize(grid, last_move)
+    @grid = grid
+    @last_move = last_move
   end
   
-  # checks for empty(nil) spaces on the grid
-  def available_spaces
-    spaces = []
-    @grid.each_with_index do |column, col_index|
-      column.each_with_index do |space, row_index|
-        spaces << [col_index, row_index] if space == nil
-      end
+  def evaluate(current_player)    
+    if diagonal_win
+      diagonal_win == current_player.token ? @score = 1 : @score = -1
+      
+    elsif horizontal_win
+      horizontal_win == current_player.token ? @score = 1 : @score = -1
+      
+    elsif vertical_win
+      vertical_win == current_player.token ? @score = 1 : @score = -1
+      
+    elsif game_ended # cat game
+      @score = 0
     end
-    spaces
-  end
-  
-  # adds a piece to the grid
-  # indexes start at 0 from the top left corner of the grid
-  def add_piece(player_token, location)
-    @grid[location.first][location.last] = player_token
-  end
-  
-  # determines if there is a winning player and returns that player token
-  def calculate_win
-    return diagonal_win if diagonal_win
-    return horizontal_win if horizontal_win
-    return vertical_win if vertical_win
   end
   
   private
-
+  
   def diagonal_win
     # top left to bottom right
     if @grid[0][0] == @grid[1][1] && @grid[1][1] == @grid[2][2] && @grid[0][0]
@@ -77,5 +67,14 @@ class Board
     if @grid[0][2] == @grid[1][2] && @grid[1][2] == @grid[2][2] && @grid[0][2]
       return @grid[0][2]
     end
+  end
+  
+  def game_ended
+    @grid.each do |row|
+      row.each do |space|
+        return false if not space
+      end
+    end
+    return true
   end
 end
