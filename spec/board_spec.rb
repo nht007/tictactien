@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe "Board" do
+describe "Board" do    
+  
   it "returns its new grid" do
     board = Board.new
     board.grid.should == [[nil, nil, nil],
@@ -30,7 +31,7 @@ describe "Board" do
     end
   end
   
-  ['x', 'o'].each do |player_token|
+  ['x', 'o'].each do |player_token|    
     [
       [[0,0], [[player_token, nil, nil], [nil, nil, nil], [nil, nil, nil]]],
       [[0,1], [[nil, player_token, nil], [nil, nil, nil], [nil, nil, nil]]],
@@ -41,15 +42,15 @@ describe "Board" do
       [[2,0], [[nil, nil, nil], [nil, nil, nil], [player_token, nil, nil]]],
       [[2,1], [[nil, nil, nil], [nil, nil, nil], [nil, player_token, nil]]],
       [[2,2], [[nil, nil, nil], [nil, nil, nil], [nil, nil, player_token]]],
-    ].each do |location, grid|
-      it "adds a piece to its grid at location #{location.first},#{location.last}" do
+    ].each do |location, grid|    
+      it "adds a piece to its grid at loc #{location.first},#{location.last}" do
         board = Board.new
         board.add_piece(player_token, location)
         board.grid.should == grid
       end
     end
   end
-
+  
   ['x', 'o'].each do |player_token|
     [
       [[], nil],
@@ -61,7 +62,7 @@ describe "Board" do
       [[[0,0],[1,0],[2,0]], player_token],
       [[[0,1],[1,1],[2,1]], player_token],
       [[[0,2],[1,2],[2,2]], player_token],
-      ].each do |pieces, result|
+    ].each do |pieces, result|
         it "checks for a winning player" do
         board = Board.new
         pieces.each do |piece|
