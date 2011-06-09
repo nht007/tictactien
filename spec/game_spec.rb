@@ -7,9 +7,7 @@ describe "Game" do
     
     game = Game.new(player_one, player_two)
     
-    game.player_one.should_not be_nil
-    game.player_two.should_not be_nil
-    game.board.should_not be_nil
+    game.game_state.should_not be_nil
   end  
   
   it "switches the active player" do
@@ -18,8 +16,11 @@ describe "Game" do
     
     game = Game.new(player_one, player_two)
     
-    game.switch_active_player.should == player_two
-    game.switch_active_player.should == player_one
-    game.switch_active_player.should == player_two
+    game.switch_active_player
+    game.game_state.active_player.should == player_two
+    game.switch_active_player
+    game.game_state.active_player.should == player_one
+    game.switch_active_player
+    game.game_state.active_player.should == player_two
   end
 end

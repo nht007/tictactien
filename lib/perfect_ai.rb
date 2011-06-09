@@ -7,7 +7,8 @@ class PerfectAi < Ai
       return [0,0]
     end
     
-    minimax = Minimax.new(board, current_player)
+    minimax = Minimax.new(board, nil, current_player.token, current_player.token)
+    minimax.build_tree
     minimax.get_next_move
   end  
 end

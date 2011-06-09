@@ -1,23 +1,17 @@
 require 'board'
 
 class Game
-  attr_accessor :player_one, :player_two, :board, :active_player
+  attr_accessor :players, :game_state  
   
-  def initialize(player_one, player_two)
-    @player_one = player_one
-    @player_two = player_two
-    
-    @board = Board.new
-    @active_player = player_one
+  def initialize
+    @players = {:one => nil, :two => nil}
   end
   
   def switch_active_player
-    if @active_player == player_one
-      @active_player = player_two
-    elsif @active_player == player_two
-      @active_player = player_one
+    if @game_state.active_player == @players[:one]
+      @game_state.active_player = @players[:two]
+    elsif @game_state.active_player == @players[:two]
+      @game_state.active_player = @players[:one]
     end
-    
-    return @active_player
   end
 end

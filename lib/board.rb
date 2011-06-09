@@ -7,6 +7,14 @@ class Board
              [nil, nil, nil]]
   end
   
+  def clone
+    board = Board.new
+    board.grid = [[@grid[0][0], @grid[0][1], @grid[0][2]],
+                  [@grid[1][0], @grid[1][1], @grid[1][2]],
+                  [@grid[2][0], @grid[2][1], @grid[2][2]]]
+    return board
+  end
+  
   # checks for empty(nil) spaces on the grid
   def available_spaces
     spaces = []
@@ -21,7 +29,12 @@ class Board
   # adds a piece to the grid
   # indexes start at 0 from the top left corner of the grid
   def add_piece(player_token, location)
-    @grid[location.first][location.last] = player_token
+    if @grid[location.first][location.last]
+      return false   
+    end
+  
+    @grid[location.first][location.last] = player_token  
+    return true
   end
   
   # determines if there is a winning player and returns that player token
@@ -29,6 +42,14 @@ class Board
     return diagonal_win if diagonal_win
     return horizontal_win if horizontal_win
     return vertical_win if vertical_win
+    return 'nobody' if cat_game?
+  end
+  
+  def print
+    puts "\n"
+    puts "#{@grid[0]}\n"
+    puts "#{@grid[1]}\n"
+    puts "#{@grid[2]}\n"
   end
   
   private
@@ -78,4 +99,13 @@ class Board
       return @grid[0][2]
     end
   end
+  
+  def cat_game?
+    @grid.each do |row|
+      row.each do |space|
+        return false if not space
+      end
+    end
+    return true
+  end  
 end
